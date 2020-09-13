@@ -1,0 +1,20 @@
+.menu {
+  display: flex;
+  flex: auto;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  text-align: center;
+}
+
+.menu-item {
+  padding: 16px;
+  border-radius: 15px;
+  list-style: none;
+}
+
+.menu-item:hover {
+  color: black;
+  background-color: wheat;
+  cursor: pointer;
+}

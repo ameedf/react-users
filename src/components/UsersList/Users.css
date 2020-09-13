@@ -1,0 +1,18 @@
+.users-list {
+  padding: 10px;
+  margin: 10px;
+  background-color: wheat;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  width: 25%;
+  margin: 2%;
+  background-color: #909090;
+  color: black;
+  border: 1px solid red;
+  padding: 1%;
+  border-radius: 10px;
+}
