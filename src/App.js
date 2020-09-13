@@ -8,7 +8,8 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      <User mode='view'/>
+      <UsersList />
+      {/* <User mode='view'/> */}
     </div>
   );
 }
