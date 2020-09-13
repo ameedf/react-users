@@ -35,7 +35,7 @@ class User extends Component {
   render() {
     const user = this.state.user;
     console.log("User - render: ", user);
-    const disabled = this.props.mode === 'view'; 
+    const disabled = this.props.mode === 'view';
     return (
       <div>
         <div>

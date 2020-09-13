@@ -8,12 +8,19 @@
 }
 
 .menu-item {
-  padding: 16px;
-  border-radius: 15px;
   list-style: none;
 }
 
-.menu-item:hover {
+a {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  color: wheat;
+  background-color: black;
+  text-decoration-line: none;
+}
+
+a:hover {
   color: black;
   background-color: wheat;
   cursor: pointer;

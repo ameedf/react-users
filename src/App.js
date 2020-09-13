@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from './components/Header/Header';
 import SecurityContext from './components/Security/SecurityContext';
-import User from './components/User/User';
-import UsersList from './components/UsersList/UsersList';
+import Body from './components/Body/Body';
 
 function App() {
   return (
@@ -14,12 +14,12 @@ function App() {
         role: 'ROLE_ANONYMOUS'
       }
     }>
-
-      <div className="App">
-        <Header></Header>
-        <UsersList />
-        {/* <User mode='view'/> */}
-      </div>
+      <Router>
+        <div className="App">
+          <Header></Header>
+          <Body />
+        </div>
+      </Router>
     </SecurityContext.Provider>
   );
 }

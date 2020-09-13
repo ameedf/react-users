@@ -12,7 +12,6 @@ class UserItem extends Component {
 
   roleIn(roles) {
     const aRole = roles.find(role => role === this.context.role);
-    console.log(aRole);
     return aRole !== undefined;
   }
 
