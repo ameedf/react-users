@@ -14,24 +14,29 @@ class UsersList extends Component {
   }
 
   async populateUsers() {
-    let usersJson = localStorage.getItem("users");
-    let users = null;
-    if (!usersJson) {
-      console.log("Fetching users from the net");
-      users = await this.fetchUsers();
-      usersJson = JSON.stringify(users);
-      localStorage.setItem("users", usersJson);
-    } else {
-      console.log("Fetching users from local storage");
-      users = JSON.parse(usersJson);
+    let users = this.fetchUsersFromLocalStorage();
+    if (users == null) {
+      users = await this.fetchUsersFromApi();
     }
     this.setState({ users });
   }
 
-  async fetchUsers() {
+  fetchUsersFromLocalStorage() {
+    let usersJson = localStorage.getItem("users");
+    if (usersJson) {
+      console.log("Fetching users from local storage");
+      return JSON.parse(usersJson);
+    }
+    return null;
+  }
+
+  async fetchUsersFromApi() {
+    console.log("Fetching users from the net");
     const usersResponse = await fetch('https://randomuser.me/api/?results=15');
     const usersBody = await usersResponse.json();
-    return usersBody.results;
+    const users = usersBody.results;
+    localStorage.setItem("users", JSON.stringify(users));
+    return users;
   }
 
   render() {
