@@ -2,16 +2,28 @@ import React, { Component } from 'react';
 
 class User extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
-      user: {
-        gender: 'male',
-        name: {
-          first: 'josh',
-          last: 'long'
-        }
-      }
+      user: null,
     };
+  }
+
+  getUserId() {
+    return this.props.match.params.userId;
+  }
+  
+  getMode() {
+    return this.props.match.params.mode;
+  }
+
+  componentDidMount() {
+    const userId = this.getUserId();
+    const users = JSON.parse(localStorage.getItem('users'));
+    const user = users.find((u) => u.login.uuid === userId)
+    if (user) {
+      this.setState({ user });
+    }
   }
 
   genderChangedHandler(e) {
@@ -34,13 +46,15 @@ class User extends Component {
 
   render() {
     const user = this.state.user;
-    console.log("User - render: ", user);
-    const disabled = this.props.mode === 'view';
+    if (user == null) {
+      return <div>Loading date for user with ID {this.getUserId()}...</div>;
+    }
+    const disabled = this.getMode() === 'view';
     return (
       <div>
         <div>
           Gender:
-          <select value={user.gender} disabled={disabled} onChange={(e) => this.genderChangedHandler(e)}>
+            <select value={user.gender} disabled={disabled} onChange={(e) => this.genderChangedHandler(e)}>
             <option value="male">male</option>
             <option value="female">female</option>
           </select>

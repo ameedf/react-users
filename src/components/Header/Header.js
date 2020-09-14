@@ -6,10 +6,10 @@ import Menu from '../Menu/Menu';
 class Header extends Component {
   render() {
     return (
-      <div className="header">
+      <header className="header">
         <img className="logo" src={logo} alt="react logo" />
         <Menu />
-      </div>
+      </header>
     );
   }
 }

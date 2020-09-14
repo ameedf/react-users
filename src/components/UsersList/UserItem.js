@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import SecurityContext from '../Security/SecurityContext';
 
 class UserItem extends Component {
@@ -7,7 +8,9 @@ class UserItem extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      redirect: null
+    }
   }
 
   roleIn(roles) {
@@ -15,8 +18,19 @@ class UserItem extends Component {
     return aRole !== undefined;
   }
 
+  viewHandler() {
+    const user = this.props.user;
+    const redirect = `/users/${user.login.uuid}/view`;
+    this.setState({ redirect });
+  }
+
   render() {
     const user = this.props.user;
+    const redirect = this.state.redirect;
+    if (redirect != null) {
+      return <Redirect to={redirect} />
+    }
+
     const userName = `${user.name.first} ${user.name.last}`;
     return (
       <div className="user-card">
@@ -35,7 +49,7 @@ class UserItem extends Component {
             <tr>
               <td colSpan="2">
                 {this.roleIn(['ROLE_ADMIN', 'ROLE_ANONYMOUS']) &&
-                  <button>View</button>
+                  <button onClick={() => this.viewHandler()}>View</button>
                 }
                 {this.roleIn(['ROLE_ADMIN']) &&
                   <button>Edit</button>
