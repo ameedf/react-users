@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class User extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       user: null,
@@ -24,6 +23,13 @@ class User extends Component {
     if (user) {
       this.setState({ user });
     }
+  }
+
+  componentWillUnmount() {
+    const users = JSON.parse(localStorage.getItem('users'));
+    const userIndex = users.findIndex((u) => u.login.uuid === this.state.user.login.uuid);
+    users[userIndex] = this.state.user;
+    localStorage.setItem('users', JSON.stringify(users));
   }
 
   genderChangedHandler(e) {

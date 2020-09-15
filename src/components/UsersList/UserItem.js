@@ -18,9 +18,9 @@ class UserItem extends Component {
     return aRole !== undefined;
   }
 
-  viewHandler() {
+  handleUser(mode) {
     const user = this.props.user;
-    const redirect = `/users/${user.login.uuid}/view`;
+    const redirect = `/users/${user.login.uuid}/${mode}`;
     this.setState({ redirect });
   }
 
@@ -49,10 +49,10 @@ class UserItem extends Component {
             <tr>
               <td colSpan="2">
                 {this.roleIn(['ROLE_ADMIN', 'ROLE_ANONYMOUS']) &&
-                  <button onClick={() => this.viewHandler()}>View</button>
+                  <button onClick={() => this.handleUser('view')}>View</button>
                 }
                 {this.roleIn(['ROLE_ADMIN']) &&
-                  <button>Edit</button>
+                  <button onClick={() => this.handleUser('edit')}>Edit</button>
                 }
                 {this.roleIn(['ROLE_ADMIN']) &&
                   <button>Delete</button>
