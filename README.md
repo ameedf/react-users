@@ -1,4 +1,4 @@
-A basic project for users handler
+A basic project for users handler - on Azure
 
 ## Steps:
 
